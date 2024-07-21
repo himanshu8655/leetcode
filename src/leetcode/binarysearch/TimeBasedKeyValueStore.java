@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Your TimeMap object will be instantiated and called as such:
- * TimeMap obj = new TimeMap();
- * obj.set(key,value,timestamp);
- * String param_2 = obj.get(key,timestamp);
- */
-
 
 public class TimeBasedKeyValueStore {
 	 HashMap<String,ArrayList<Data>> storage = new HashMap<>();
