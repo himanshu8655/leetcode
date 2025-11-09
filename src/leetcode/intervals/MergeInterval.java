@@ -27,4 +27,8 @@ public class MergeInterval {
 
         return ans.toArray(new int[ans.size()][2]);
     }
+    
+    public void eraseOverlapIntervals(int[][] intervals) {
+        Arrays.sort(intervals,(o1,o2)-> o1[0]-o2[0]);
+    }
 }
