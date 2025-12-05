@@ -1,9 +1,15 @@
 package leetcode.practice;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 import leetcode.binarytree.TreeNode;
 
@@ -25,13 +31,33 @@ import leetcode.binarytree.TreeNode;
 class Practice {
 	
 	public static void main(String args[]) {
-		Practice obj = new Practice();
-		TreeNode root = new TreeNode(3);
-		root.left = new TreeNode(9);
-		root.right = new TreeNode(20);
-		root.right.left = new TreeNode(15);
-		root.right.right = new TreeNode(7);
-		obj.zigzagLevelOrder(root);
+		Map<String, String> lruCache = new LinkedHashMap<>(){
+			@Override
+			protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
+				if(size()>2)
+					return true;
+				else return false;
+			}
+		};;
+		lruCache.put("foo", "bar");
+        lruCache.put("bar", "bar");
+        lruCache.get("foo");
+        lruCache.put("baz", "bar");
+
+        System.out.println("bar", lruCache.get("foo"));
+        System.out.println(lruCache.get("bar"));
+        assertEquals("bar", lruCache.get("baz"));
+
+		Queue<Integer> q = new LinkedList<>();
+		q.add(10);
+		q.offer(20);
+		q.offer(30);
+		q.peek();   // 10
+		System.out.println(q.poll());
+		System.out.println(q.poll());
+		System.out.println(q.peek());
+//		HttpClient client = HttpClient.newHttpClient();
+//		HttpRequest req = HttpRequest.newBuilder().uri(URI.create("")).GET().build();
 	}
 	
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {

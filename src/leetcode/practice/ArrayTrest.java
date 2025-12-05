@@ -20,6 +20,7 @@ public class ArrayTrest {
 		int[] arr = new int[] {1,3,3};
 		int a =  Arrays.stream(arr).distinct().boxed().sorted(Comparator.reverseOrder()).skip(1).findFirst().orElse(0);
 		System.out.println(a);
+		String s = "a";
 	}
 
 
