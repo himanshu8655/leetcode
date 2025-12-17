@@ -44,10 +44,6 @@ class Practice {
         lruCache.get("foo");
         lruCache.put("baz", "bar");
 
-        System.out.println("bar", lruCache.get("foo"));
-        System.out.println(lruCache.get("bar"));
-        assertEquals("bar", lruCache.get("baz"));
-
 		Queue<Integer> q = new LinkedList<>();
 		q.add(10);
 		q.offer(20);
@@ -56,6 +52,7 @@ class Practice {
 		System.out.println(q.poll());
 		System.out.println(q.poll());
 		System.out.println(q.peek());
+
 //		HttpClient client = HttpClient.newHttpClient();
 //		HttpRequest req = HttpRequest.newBuilder().uri(URI.create("")).GET().build();
 	}
