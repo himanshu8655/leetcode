@@ -31,59 +31,73 @@ import leetcode.binarytree.TreeNode;
 class Practice {
 	
 	public static void main(String args[]) {
-		Map<String, String> lruCache = new LinkedHashMap<>(){
-			@Override
-			protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
-				if(size()>2)
-					return true;
-				else return false;
-			}
-		};;
-		lruCache.put("foo", "bar");
-        lruCache.put("bar", "bar");
-        lruCache.get("foo");
-        lruCache.put("baz", "bar");
-
-		Queue<Integer> q = new LinkedList<>();
-		q.add(10);
-		q.offer(20);
-		q.offer(30);
-		q.peek();   // 10
-		System.out.println(q.poll());
-		System.out.println(q.poll());
-		System.out.println(q.peek());
-
-//		HttpClient client = HttpClient.newHttpClient();
-//		HttpRequest req = HttpRequest.newBuilder().uri(URI.create("")).GET().build();
+		lengthOfLongestSubstring("pwwkew");
+		characterReplacement("AAABABB", 1);
+		maxProfit(new int[] {7,1,5,3,6,4});
 	}
 	
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        Deque<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.add(root);
-        boolean leftToRight = true;
-        while(!queue.isEmpty()){
-            int sz = queue.size();
-            LinkedList<Integer> level = new LinkedList<Integer>();
-            for(int i=0;i<sz;i++){
-                TreeNode node = queue.remove();
-                    if(node!=null){
-                        if(node.left!=null)
-                            queue.add(node.left);
-                        else if(node.right!=null)
-                            queue.add(node.right);
-                        if(leftToRight){
-                            level.addLast(node.val);
-                    }
-                        else{
-                            level.addFirst(node.val);
-                    }
-                }
+    public static int maxProfit(int[] prices) {
+        int maxProfit = 0;
+        int buy = 0;
+        int sell = 1;
+        int n = prices.length;
+
+        while(sell<n){
+            if(prices[buy]>prices[sell]){
+                buy = sell;
+                sell++;
+                continue;
             }
-            System.out.print(level);
-            res.add(level);
-            leftToRight = !leftToRight;
+            maxProfit = Math.max(prices[sell] - prices[buy], prices[sell]);
+            sell++;
         }
-        return res;
+        return maxProfit;
     }
+    
+	   public static int characterReplacement(String s, int k) {
+	        int result = 0;
+	        int n = s.length();
+	        for(int i = 0; i<n; i++){
+	            int ctr = 0;
+	            char distinctCharacter = s.charAt(i);
+	            for(int j = i; j<n; j++){
+	                
+	                if(s.charAt(j) != distinctCharacter){
+	                    ctr++;
+	                }
+	                if(ctr>k)
+	                    break;
+	                result = Math.max(j - i + 1, result);
+	            }
+	        }
+	        return result;
+	    }
+	 public static int lengthOfLongestSubstring(String s) {
+	        int leftPointer = -1;
+	        int[] freq = new int[26];
+	        int result = 0;
+	        for(int i = 0; i<s.length(); i++){
+	            char c = s.charAt(i);
+	            if(freq[c - 'a'] == 0){
+	                freq[c - 'a']++;
+	                result = Math.max(result, i - leftPointer);
+	            }
+	            else{
+	                if(leftPointer<s.length()-1){
+	                leftPointer++;
+	               char leftChar = s.charAt(leftPointer);
+	               while(leftPointer<s.length() && leftChar!=c){
+	                leftPointer++;
+	                freq[leftChar - 'a']--;
+	               }
+	                }
+	               
+	               
+	               
+	            }
+	        }
+
+	        return result;
+	    }
+	
 }
