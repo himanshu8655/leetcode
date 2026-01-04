@@ -1,9 +1,26 @@
 package leetcode.bitmanipulation;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.PriorityQueue;
 
 class DetectSquares {
+	class Element{
+        int element;
+        int freq;
+
+        Element(int element, int freq){
+            this.element = element;
+            this.freq = freq;
+        }
+    }
+	
+	public static void main(String args[]) {
+		groupAnagrams(new String[] {"rat", "tar"});
+	}
     HashMap<String, HashSet<String>> points;
     public DetectSquares() {
         points = new HashMap<>();
@@ -50,6 +67,36 @@ class DetectSquares {
     public String pointToString(int[] point){
         return point[0]+"%"+point[1];
     }
+    
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Element> hmp = new HashMap<>();
+    	PriorityQueue<Element> pq = new PriorityQueue<Element>((o1,o2)-> o2.freq - o1.freq);
+        pq.addAll(hmp.values());
+        String res = "";
+        
+        for(int num : nums){
+        }
+        char c;
+        StringBuilder strBuilder;
+        String s;
+        int[] q;
+        ArrayList<Integer> lst = new ArrayList<>();
+        Character.isLetterOrDigit(c);
+        return new int[] {};
+    }
+    
+    public static List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> res = new HashMap<>();
+        int[] freq = new int[26];
+        for(String s : strs){
+          char[] charArray = s.toCharArray();
+          for(char c : charArray){
+              freq[c - 'a']++;
+          }
+          res.computeIfAbsent(Arrays.toString(freq), k->new ArrayList<>()).add(s);
+        }
+        return new ArrayList<>(res.values());
+      }
 
     public int[] pointToArray(String point){
         int[] res = new int[2];
